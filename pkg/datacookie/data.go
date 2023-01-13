@@ -72,17 +72,20 @@ func (d *dataCookie) Save() error {
 func (d *dataCookie) load() {
 	c, err := d.rd.Cookie("data")
 	if err != nil || c == nil {
+		d.values = make(map[string]interface{})
 		return
 	}
 
 	token, err := tokenizer.Decode(c.Value)
 	if err != nil {
+		d.values = make(map[string]interface{})
 		log.Println("Не удалось декодировать токен", err)
 		return
 	}
 
 	values, err := token.AsMap(context.Background())
 	if err != nil {
+		d.values = make(map[string]interface{})
 		log.Println("Не удалось извлечь данные в виде карты из токена", err)
 		return
 	}
