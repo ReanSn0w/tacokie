@@ -1,4 +1,4 @@
-module github.com/ReanSn0w/datacookie
+module github.com/ReanSn0w/tacokie
 
 go 1.19
 
